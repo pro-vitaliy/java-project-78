@@ -1,9 +1,14 @@
 package hexlet.code;
 
-import hexlet.code.chemas.StringShema;
+import hexlet.code.schemas.NumberSchema;
+import hexlet.code.schemas.StringSchema;
 
 public class Validator {
-    public StringShema string() {
-        return new StringShema();
+    public StringSchema string() {
+        return new StringSchema();
+    }
+
+    public NumberSchema number() {
+        return new NumberSchema();
     }
 }
