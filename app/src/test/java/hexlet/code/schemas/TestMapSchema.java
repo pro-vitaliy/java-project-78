@@ -43,7 +43,7 @@ public class TestMapSchema {
         Map<String, BaseSchema<String>> strSchemas = new HashMap<>();
 
         strSchemas.put("firstName", validator.string().required());
-        strSchemas.put("lastName", validator.string().required().minLen(2));
+        strSchemas.put("lastName", validator.string().required().minLength(2));
 
         schema1.shape(strSchemas);
 

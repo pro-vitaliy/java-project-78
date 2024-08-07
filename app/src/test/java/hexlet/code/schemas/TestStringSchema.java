@@ -21,7 +21,7 @@ public class TestStringSchema {
         assertTrue(schema.isValid(""));
         assertTrue(schema.isValid(null));
 
-        schema.minLen(5);
+        schema.minLength(5);
         assertTrue(schema.isValid("12345"));
         assertTrue(schema.isValid(null));
 
@@ -29,7 +29,7 @@ public class TestStringSchema {
         assertFalse(schema.isValid(""));
         assertFalse(schema.isValid(null));
 
-        schema.minLen(2);
+        schema.minLength(2);
         assertFalse(schema.isValid("1"));
         assertTrue(schema.isValid("11"));
 

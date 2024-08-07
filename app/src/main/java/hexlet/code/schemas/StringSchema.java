@@ -18,7 +18,7 @@ public class StringSchema extends BaseSchema<String> {
         return this;
     }
 
-    public StringSchema minLen(int len) {
+    public StringSchema minLength(int len) {
         Predicate<String> minLen = s -> !Objects.nonNull(s) || s.length() >= len;
         addValidationRule("minLength", minLen);
         return this;
