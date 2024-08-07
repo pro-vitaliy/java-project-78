@@ -20,7 +20,7 @@ public class MapSchema<K, V> extends BaseSchema<Map<K, V>> {
 
     public MapSchema<K, V> shape(Map<K, BaseSchema<V>> schema) {
 
-        Predicate<Map<K, V>> isShape = m -> m.keySet().stream()
+        Predicate<Map<K, V>> isShape = m -> !Objects.nonNull(m) || m.keySet().stream()
                 .allMatch(k -> schema.get(k).isValid(m.get(k)));
 
         addValidationRule("shape", isShape);
