@@ -1,7 +1,6 @@
 package hexlet.code.schemas;
 
 import hexlet.code.Validator;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
