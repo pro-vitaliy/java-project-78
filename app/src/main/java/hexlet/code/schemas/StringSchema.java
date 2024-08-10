@@ -3,7 +3,7 @@ package hexlet.code.schemas;
 import java.util.Objects;
 import java.util.function.Predicate;
 
-public class StringSchema extends BaseSchema<String> {
+public final class StringSchema extends BaseSchema<String> {
 
     public StringSchema required() {
         Predicate<String> stringNonNull = Objects::nonNull;
