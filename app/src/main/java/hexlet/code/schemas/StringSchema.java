@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 public final class StringSchema extends BaseSchema<String> {
 
+    @Override
     public StringSchema required() {
         Predicate<String> stringNonNull = Objects::nonNull;
         Predicate<String> stringNotEmpty = s -> !s.isEmpty();
