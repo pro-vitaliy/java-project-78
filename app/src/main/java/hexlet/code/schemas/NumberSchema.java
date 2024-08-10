@@ -5,12 +5,6 @@ import java.util.function.Predicate;
 
 public final class NumberSchema extends BaseSchema<Integer> {
 
-    public NumberSchema required() {
-        Predicate<Integer> numNonNull = Objects::nonNull;
-        addValidationRule("required", numNonNull);
-        return this;
-    }
-
     public NumberSchema positive() {
         Predicate<Integer> numIsPositive = n -> !Objects.nonNull(n) || n > 0;
         addValidationRule("positive", numIsPositive);
