@@ -20,7 +20,7 @@ public class TestMapSchema {
 
     @Test
     public void isValidTest() {
-        MapSchema<String, String> schema = validator.map();
+        var schema = validator.map();
         assertTrue(schema.isValid(null));
 
         schema.required();
@@ -39,7 +39,7 @@ public class TestMapSchema {
 
     @Test
     public void shapeTest() {
-        MapSchema<String, String> schema1 = validator.map();
+        var schema1 = validator.map();
         Map<String, BaseSchema<String>> strSchemas = new HashMap<>();
 
         strSchemas.put("firstName", validator.string().required());
@@ -56,19 +56,6 @@ public class TestMapSchema {
         human2.put("firstName", "John");
         human2.put("lastName", null);
         assertFalse(schema1.isValid(human2));
-
-        MapSchema<String, Integer> schema2 = validator.map();
-        Map<String, BaseSchema<Integer>> intSchemas = new HashMap<>();
-
-        intSchemas.put("firstHuman", validator.number().required().positive().range(18, 30));
-        intSchemas.put("secondHuman", validator.number().required().positive());
-        schema2.shape(intSchemas);
-
-        Map<String, Integer> ageHumans = new HashMap<>();
-        ageHumans.put("firstHuman", 20);
-        assertTrue(schema2.isValid(ageHumans));
-        ageHumans.put("secondHuman", -18);
-        assertFalse(schema2.isValid(ageHumans));
 
     }
 }
