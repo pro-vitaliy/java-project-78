@@ -1,7 +1,6 @@
 package hexlet.code.schemas;
 
 import hexlet.code.Validator;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
@@ -10,17 +9,13 @@ import java.util.Map;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class TestMapSchema {
-    private Validator validator;
-
-    @BeforeEach
-    public void beforeEach() {
-        validator = new Validator();
-    }
+public final class TestMapSchema {
 
     @Test
     public void isValidTest() {
+        Validator validator = new Validator();
         var schema = validator.map();
+
         assertTrue(schema.isValid(null));
 
         schema.required();
@@ -39,7 +34,9 @@ public class TestMapSchema {
 
     @Test
     public void shapeTest() {
+        Validator validator = new Validator();
         var schema1 = validator.map();
+
         Map<String, BaseSchema<String>> strSchemas = new HashMap<>();
 
         strSchemas.put("firstName", validator.string().required());

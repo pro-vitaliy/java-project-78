@@ -1,23 +1,18 @@
 package hexlet.code.schemas;
 
 import hexlet.code.Validator;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class TestStringSchema {
-    public static Validator validator;
-    public static StringSchema schema;
+public final class TestStringSchema {
 
-    @BeforeAll
-    public static void beforeAll() {
-        validator = new Validator();
-        schema = validator.string();
-    }
     @Test
-    void voidTest() {
+    void isValidTest() {
+        Validator validator = new Validator();
+        var schema = validator.string();
+
         assertTrue(schema.isValid(""));
         assertTrue(schema.isValid(null));
 
