@@ -1,12 +1,12 @@
 package hexlet.code.schemas;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.Objects;
 import java.util.function.Predicate;
 
 public class BaseSchema<T> {
-    private final Map<String, Predicate<T>> validationRules = new HashMap<>();
+    private final Map<String, Predicate<T>> validationRules = new LinkedHashMap<>();
+    private boolean isRequired;
 
     /**
      * Validates the given value against all registered validation rules.
@@ -20,26 +20,19 @@ public class BaseSchema<T> {
      * @return {@code true} if the value passes all validation rules; {@code false} otherwise
      */
     public boolean isValid(T value) {
+        if (!isRequired && !validationRules.get("required").test(value)) {
+            return true;
+        }
         return validationRules.values()
                 .stream()
                 .allMatch(p -> p.test(value));
     }
 
-    /**
-     * Adds a validation rule to ensure that the value is not null.
-     *
-     * <p>This method registers a predicate that checks if the given value
-     * is not null. If the value is null, the validation will fail.</p>
-     *
-     * @return the current schema with the added non-null validation rule.
-     */
-    public BaseSchema<T> required() {
-        Predicate<T> isRequired = Objects::nonNull;
-        addValidationRule("required", isRequired);
-        return this;
-    }
-
     protected final void addValidationRule(String ruleName, Predicate<T> pr) {
         validationRules.put(ruleName, pr);
+    }
+
+    protected final void markAsRequired() {
+        this.isRequired = true;
     }
 }
